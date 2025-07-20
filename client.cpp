@@ -1,5 +1,4 @@
-#include <WinSock2.h>
-#include <WS2tcpip.h>
+#include <network.h>
 #include <iostream>
 
 #define CLIENTLOG(x) do { std::cout << "CLIENT: " << x << std::endl; }while(0)
@@ -46,10 +45,9 @@ int main(int argc, char* argv[])
     CLIENTLOG("Initialized...");
 
     const char sendbuf[] = "ABCD";
-    std::cout << strlen(sendbuf) + 1 << std::endl;
 
     // NOTE: addr_result->ai_addr is the struct sockaddr_in that we would otherwise have to fill out. It holds the port and ip of the server we are trying to connect to
-    if(int bytes_sent = sendto(connect_socket, "ABCD", strlen(sendbuf) + 1, 0, addr_result->ai_addr, addr_result->ai_addrlen) > 0)
+    if(int bytes_sent = sendto(connect_socket, sendbuf, strlen(sendbuf) + 1, 0, addr_result->ai_addr, addr_result->ai_addrlen) > 0)
     {
         CLIENTLOG("Data Sent: " << bytes_sent << " bytes...");
     }

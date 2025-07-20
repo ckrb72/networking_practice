@@ -71,43 +71,8 @@ int main()
         freeaddrinfo(addr_result);
     }
 
-    // This is for tcp stream sockets only
-    /*if(listen(ListenSocket, SOMAXCONN) == SOCKET_ERROR)
-    {
-        SERVERLOG("Faild to listen on ip and port: " + WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
-        return -1;
-    }
-
-    SERVERLOG("Awaiting Connection...");
-
-    // Accept the client
-    SOCKET client = accept(ListenSocket, nullptr, nullptr);
-    if(client == INVALID_SOCKET)
-    {
-        SERVERLOG("accept failed: " + WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
-        return -1;
-    }
-
-    // Normally would keep this around on this thread but don't need this for this example so closing it
-    closesocket(ListenSocket);
-
-
-    SERVERLOG("Connected to client...");
-    */
-
     SERVERLOG("Waiting for data...");
     char recvbuf[512];
-
-    // TCP
-    /*if(int bytes_recieved = recv(client, recvbuf, 512, 0) > 0)
-    {
-        SERVERLOG(bytes_recieved);
-        SERVERLOG(recvbuf << " Connected");
-    }*/
 
     struct sockaddr_in client;
     int client_size = sizeof(struct sockaddr_in);
@@ -121,20 +86,6 @@ int main()
 
 
     SERVERLOG("Shutting Down...");
-
-    // TCP
-    /*int result = shutdown(client, SD_SEND);
-    if(result == SOCKET_ERROR)
-    {
-        SERVERLOG("shutdown failed: " + WSAGetLastError());
-        closesocket(client);
-        WSACleanup();
-        return -1;
-    }
-
-    closesocket(client);
-    */
-
     closesocket(ListenSocket);
     WSACleanup();
     return 0;

@@ -45,46 +45,6 @@ int main(int argc, char* argv[])
     }
     CLIENTLOG("Initialized...");
 
-    /*
-    CLIENTLOG("Trying to connect to server...");
-
-    result = connect(connect_socket, addr_result->ai_addr, (int)addr_result->ai_addrlen);
-    if(result == SOCKET_ERROR)
-    {
-        closesocket(connect_socket);
-        connect_socket = INVALID_SOCKET;
-        return -1;
-    }
-
-    // No longer need this here if using TCP
-    //freeaddrinfo(addr_result);
-
-    if(connect_socket == INVALID_SOCKET)
-    {
-        CLIENTLOG("Unable to connect to server");
-        WSACleanup();
-        return -1;
-    }
-
-
-    CLIENTLOG("Connection Successful...");
-
-    CLIENTLOG("Sending data...");
-
-    char recvbuf[512];
-
-    int bytes_sent = 0;
-    if((bytes_sent = send(connect_socket, sendbuf, strlen(sendbuf) + 1, 0)) == SOCKET_ERROR)
-    {
-        CLIENTLOG("send failed: " + WSAGetLastError());
-        closesocket(connect_socket);
-        WSACleanup();
-        return -1;
-    }
-
-    CLIENTLOG(bytes_sent);
-    */
-
     const char sendbuf[] = "ABCD";
     std::cout << strlen(sendbuf) + 1 << std::endl;
 
